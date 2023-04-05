@@ -1,8 +1,32 @@
 {% extends 'layouts/base.html' %}
+{% load static %}
+{% block linkstyle %}
+<link rel="stylesheet" href="{% static '/styles/Home.css' %}">
+{% endblock %}
 
 {% block content %}
 
-<h1>Home</h1>
-<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptates quasi libero saepe suscipit tenetur ut veniam enim quibusdam eum facere id inventore vitae repellat, atque autem recusandae ipsum pariatur qui fuga aut impedit? Atque harum doloremque, veritatis voluptates reiciendis velit.</p>
+<div class="content-h">
+    <div class="subcontent">
+        <h1 class="fw-light">¡Hola!</h1>
+        <p class="fw-medium">Realize aqui tramites para titulos o sertificados.</p>
+
+        <div class="mybuttons">
+            <a href="form_new_fut">Realizar un Tramite</a>
+            <a href="my_fut">Consultar Tramites</a>
+        </div>
+    </div>
+</div>
+
+<div class="content2-h">
+    <div class="cuestions">
+        <h5>¿Por que hacer un tramite virtaul?</h5>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae doloribus sequi, nisi quaerat officia corporis atque! Porro molestias dicta quos expedita, ipsam fuga temporibus veniam, voluptate recusandae a eos eius iusto aliquam consequuntur sunt dolorem atque sequi quae iste earum!</p>
+    </div>
+    <div class="cuestions">
+        <h5>Ventajas</h5>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod ex incidunt, repellendus quis molestias vitae voluptates voluptas expedita facere nulla rerum impedit maiores quos eaque pariatur? Iure reprehenderit voluptas nihil!</p>
+    </div>
+</div>
 
 {% endblock %}

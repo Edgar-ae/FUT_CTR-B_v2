@@ -8,3 +8,6 @@ def index(request):
 
 def form_new_fut(request):
     return render(request, 'create_fut/form_new_fut.html')
+
+def my_fut(request):
+    return render(request, 'view_fut/fut.html')
