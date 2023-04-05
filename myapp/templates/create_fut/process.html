@@ -1,0 +1,63 @@
+{% extends 'create_fut/base_form_new_fut.html' %}
+
+{% load static %}
+{% block linkstyle2 %}
+<link rel="stylesheet" href="{% static '/styles/create_fut/identification.css' %}">
+<link rel="stylesheet" href="{% static '/styles/create_fut/indem.css' %}">
+{% endblock %}
+
+{% block contentf %}
+<div class="bodyf">
+    <form action=""></form>
+    <div class="content_form">
+        <div class="form_block">
+            <div class="from_item">
+                <div class="group">
+                    <input type="text" id="name" required>
+                    <label for="name">Nombre</label>
+                    <div class="bar"></div>
+                </div>
+            </div>
+            <div class="from_item" style="float:right">
+                <div class="group">
+                    <input type="text" id="name" required>
+                    <label for="name">Programa</label>
+                    <div class="bar"></div>
+                </div>
+                <!-- <textarea name="" id="" cols="30" rows="10"></textarea> -->
+            </div>
+        </div>
+        <div class="form_block">
+            <div class="from_item">
+                <div class="group">
+                    <input type="text" id="name" required>
+                    <label id="label_def" for="name">CON CÓDIGO DE CARNET O Nº D.N.I.</label>
+                    <div class="bar"></div>
+                </div>
+            </div>
+            <div class="from_item" style="float:right">
+                <div class="group nomber_long">
+                    <input type="text" id="name" required>
+                    <label for="name">Celular</label>
+                    <div class="bar"></div>
+                </div>
+            </div>
+        </div>
+        <div class="form_block">
+            <div class="from_item">
+                <div class="group number">
+                    <input type="text" id="name" required>
+                    <label for="name">Ciclo</label>
+                    <div class="bar"></div>
+                </div>
+            </div>
+        </div>
+        <div class="form_block">
+            <div class="from_item" style="float:right">
+                <button>Next</button>
+            </div>
+        </div>
+    </div>
+    </form>
+</div>
+{% endblock %}

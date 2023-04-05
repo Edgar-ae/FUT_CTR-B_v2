@@ -1,0 +1,43 @@
+{% extends 'layouts/base.html' %}
+
+{% load static %}
+{% block linkstyle %}
+<link rel="stylesheet" href="{% static '/styles/create_fut/base2.css' %}">
+{% block linkstyle2 %}
+{% endblock %}
+{% endblock %}
+
+{% block content %}
+
+<div class="content-f">
+    <div class="navbar-f">
+        <div class="navbar-f-item">
+            <div class="item-f activate-f">
+                <div class="item-ftoo">
+                    <p>Identificación</p>
+                    <span>✅</span>
+                </div>
+            </div>
+        </div>
+        <div class="navbar-f-item">
+            <div class="item-f">
+                <div class="item-ftoo">
+                    <p>Tramite</p>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+        <div class="navbar-f-item">
+            <div class="item-f">
+                <div class="item-ftoo">
+                    <p>Pago</p>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </div>
+        {% block contentf %}
+        {% endblock %}
+</div>
+
+{% endblock %}
