@@ -2,8 +2,8 @@
 
 {% load static %}
 {% block linkstyle2 %}
-<link rel="stylesheet" href="{% static '/styles/create_fut/identification.css' %}">
-<link rel="stylesheet" href="{% static '/styles/create_fut/indem.css' %}">
+<link rel="stylesheet" href="{% static '/styles/create_fut/identification2.css' %}">
+<link rel="stylesheet" href="{% static '/styles/create_fut/indem2.css' %}">
 {% endblock %}
 
 {% block contentf %}
@@ -14,40 +14,32 @@
             <div class="from_item">
                 <div class="group">
                     <input type="text" id="name" required>
-                    <label for="name">Nombre</label>
+                    <label for="name">Solicito:</label>
                     <div class="bar"></div>
                 </div>
             </div>
             <div class="from_item" style="float:right">
-                <div class="group">
-                    <input type="text" id="name" required>
-                    <label for="name">Programa</label>
-                    <div class="bar"></div>
-                </div>
-                <!-- <textarea name="" id="" cols="30" rows="10"></textarea> -->
-            </div>
-        </div>
-        <div class="form_block">
-            <div class="from_item">
-                <div class="group">
-                    <input type="text" id="name" required>
-                    <label id="label_def" for="name">CON CÓDIGO DE CARNET O Nº D.N.I.</label>
-                    <div class="bar"></div>
-                </div>
-            </div>
-            <div class="from_item" style="float:right">
-                <div class="group nomber_long">
-                    <input type="text" id="name" required>
-                    <label for="name">Celular</label>
-                    <div class="bar"></div>
+                <div class="labelInside">
+                    <select name="languages" id="lang">
+                        <option selected disabled>Ordenar:</option>
+                        <option value="javascript">BUSQUEDA DE DOCUMENTOS</option>
+                        <option value="php">CAMBIO DE PROGRAMA PROFESIONAL TÉCNICO</option>
+                        <option value="java">CAMBIO DE TURNO</option>
+                        <option value="golang">CARTA DE PRESENTACIÓN DE EXPERIENCIAS FORMATIVAS</option>
+                        <option value="python">CERTIFICADO DE ESTUDIOS </option>
+                        <option value="c#">CERTIFICADO DE FORMACIÓN CONTINUA</option>
+                        <option value="C++">CERTIFICADO MODULAR POR AÑO</option>
+                        <option value="erlang">CERTIFICADO PROGRESIVO DE FORMACIÓN CONTINUA</option>
+                    </select>
                 </div>
             </div>
         </div>
         <div class="form_block">
             <div class="from_item">
-                <div class="group number">
-                    <input type="text" id="name" required>
-                    <label for="name">Ciclo</label>
+
+                <div class="group">
+                    <textarea name="" id="name" cols="30" rows="10" required></textarea>
+                    <label id="label_def" for="name">Que por motivos de:</label>
                     <div class="bar"></div>
                 </div>
             </div>
