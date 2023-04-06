@@ -8,36 +8,74 @@
 
 {% block contentf %}
 <div class="bodyf">
-    <form action=""></form>
-    <div class="content_form" style="">
-        <div class="form_block" style="">
-            <div class="from_item" style=" float: none; margin: auto;">
-                <div class="group">
-                    <input type="text" id="name" required>
-                    <label for="name">Solicito:</label>
+    <form method="post">
+        {% csrf_token %}
+    <div class="content_form">
+        <div class="form_block" style="height: 60px; margin: 30px auto 0px auto;">
+            <div class="from_item" style="float: none; margin: auto;">
+                <div class="group" style="padding: auto; margin: 0px;">
+                    <input type="text" id="name1" name="gamil" required>
+                    <label for="name1">Correo:</label>
                     <div class="bar"></div>
                 </div>
             </div>
         </div>
         <div class="form_block">
-            <div class="from_item" style=" float: none; margin: auto;">
-
+            <div class="from_item" style="float: none; margin: auto;">
                 <div class="group">
-                    <textarea name="" id="name" cols="30" rows="10" required> {{name}} </textarea>
-                    <label id="label_def" for="name">Que por motivos de:</label>
+                    <input type="text" id="name2" name="card" required>
+                    <label for="name2">Numero de Tarjeta:</label>
+                    <div class="bar"></div>
+                </div>
+            </div>
+        </div>
+        <div class="form_block" style="height: 60px; margin: 30px auto 0px auto; display: block;">
+            <div class="from_item" style="float: none; margin: auto; display: flex;">
+                <div class="group" style="padding: auto; margin: 0px; width: 45%; float: left;">
+                    <input type="text" id="name3" name="mmyy" required>
+                    <label for="name3">MMYY:</label>
+                    <div class="bar"></div>
+                </div>
+                <div class="group" style="padding: auto; margin: autopx;width: 10%;float: right;">
+                </div>
+                <div class="group" style="padding: auto; margin: autopx;width: 45%;float: right;">
+                    <input type="text" id="name4" name="cvc" required>
+                    <label for="name4">CVC:</label>
                     <div class="bar"></div>
                 </div>
             </div>
         </div>
         <div class="form_block">
             <div class="from_item" style="float:right">
-                <button>Finalizar</button>
+                <button type="submit">Finalizar</button>
             </div>
         </div>
     </div>
     </form>
 </div>
 {% endblock %}
+
+
+<!-- ----- -->
+{% block check_1 %}
+<!-- {% if name != '' %} -->
+<p style="width: 30px; text-align: center;">✅</p>
+<!-- {% else %}
+{% endif %} -->
+{% endblock %}
+<!-- ----- -->
+
+
+
+<!-- ----- -->
+{% block check_2 %}
+<!-- {% if name != '' %} -->
+<p style="width: 30px; text-align: center;">✅</p>
+<!-- {% else %}
+{% endif %} -->
+{% endblock %}
+<!-- ----- -->
+
 
 <!-- ----- -->
 {% block navbaractivate_3 %}

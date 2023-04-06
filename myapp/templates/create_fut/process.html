@@ -8,28 +8,29 @@
 
 {% block contentf %}
 <div class="bodyf">
-    <form action=""></form>
+    <form method="post">
+        {% csrf_token %}
     <div class="content_form">
         <div class="form_block">
             <div class="from_item">
                 <div class="group">
-                    <input type="text" id="name" required>
-                    <label for="name">Solicito:</label>
+                    <input type="text" id="name1" name="myrequest" required>
+                    <label for="name1">Solicito:</label>
                     <div class="bar"></div>
                 </div>
             </div>
             <div class="from_item" style="float:right">
                 <div class="labelInside">
-                    <select name="languages" id="lang">
+                    <select id="lang" name="order">
                         <option selected disabled>Ordenar:</option>
-                        <option value="javascript">BUSQUEDA DE DOCUMENTOS</option>
-                        <option value="php">CAMBIO DE PROGRAMA PROFESIONAL TÉCNICO</option>
-                        <option value="java">CAMBIO DE TURNO</option>
-                        <option value="golang">CARTA DE PRESENTACIÓN DE EXPERIENCIAS FORMATIVAS</option>
-                        <option value="python">CERTIFICADO DE ESTUDIOS </option>
-                        <option value="c#">CERTIFICADO DE FORMACIÓN CONTINUA</option>
-                        <option value="C++">CERTIFICADO MODULAR POR AÑO</option>
-                        <option value="erlang">CERTIFICADO PROGRESIVO DE FORMACIÓN CONTINUA</option>
+                        <option value="BUSQUEDA DE DOCUMENTOS">BUSQUEDA DE DOCUMENTOS</option>
+                        <option value="CAMBIO DE PROGRAMA PROFESIONAL TÉCNICO">CAMBIO DE PROGRAMA PROFESIONAL TÉCNICO</option>
+                        <option value="CAMBIO DE TURNO">CAMBIO DE TURNO</option>
+                        <option value="CARTA DE PRESENTACIÓN DE EXPERIENCIAS FORMATIVAS">CARTA DE PRESENTACIÓN DE EXPERIENCIAS FORMATIVAS</option>
+                        <option value="CERTIFICADO DE ESTUDIOS">CERTIFICADO DE ESTUDIOS</option>
+                        <option value="CERTIFICADO DE FORMACIÓN CONTINUA">CERTIFICADO DE FORMACIÓN CONTINUA</option>
+                        <option value="CERTIFICADO MODULAR POR AÑO">CERTIFICADO MODULAR POR AÑO</option>
+                        <option value="CERTIFICADO PROGRESIVO DE FORMACIÓN CONTINUA">CERTIFICADO PROGRESIVO DE FORMACIÓN CONTINUA</option>
                     </select>
                 </div>
             </div>
@@ -38,7 +39,7 @@
             <div class="from_item">
 
                 <div class="group">
-                    <textarea name="" id="name" cols="30" rows="10" required> {{name}} </textarea>
+                    <textarea id="name" name="reason" cols="30" rows="10" required></textarea>
                     <label id="label_def" for="name">Que por motivos de:</label>
                     <div class="bar"></div>
                 </div>
@@ -46,7 +47,7 @@
         </div>
         <div class="form_block">
             <div class="from_item" style="float:right">
-                <button>Next</button>
+                <button type="submit">Siguiente</button>
             </div>
         </div>
     </div>
@@ -57,10 +58,10 @@
 
 <!-- ----- -->
 {% block check_1 %}
-{% if name != '' %}
+<!-- {% if name != '' %} -->
 <p style="width: 30px; text-align: center;">✅</p>
-{% else %}
-{% endif %}
+<!-- {% else %}
+{% endif %} -->
 {% endblock %}
 <!-- ----- -->
 
