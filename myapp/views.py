@@ -60,3 +60,6 @@ def create_fut_details(request):
         #response.redirect('lol')
 
         return response
+    
+def create_fut_pay(request):
+    return render(request, 'create_fut/pay.html')

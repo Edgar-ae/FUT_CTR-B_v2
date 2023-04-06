@@ -1,0 +1,48 @@
+{% extends 'create_fut/base_form_new_fut.html' %}
+
+{% load static %}
+{% block linkstyle2 %}
+<link rel="stylesheet" href="{% static '/styles/create_fut/identification2.css' %}">
+<link rel="stylesheet" href="{% static '/styles/create_fut/indem2.css' %}">
+{% endblock %}
+
+{% block contentf %}
+<div class="bodyf">
+    <form action=""></form>
+    <div class="content_form" style="">
+        <div class="form_block" style="">
+            <div class="from_item" style=" float: none; margin: auto;">
+                <div class="group">
+                    <input type="text" id="name" required>
+                    <label for="name">Solicito:</label>
+                    <div class="bar"></div>
+                </div>
+            </div>
+        </div>
+        <div class="form_block">
+            <div class="from_item" style=" float: none; margin: auto;">
+
+                <div class="group">
+                    <textarea name="" id="name" cols="30" rows="10" required> {{name}} </textarea>
+                    <label id="label_def" for="name">Que por motivos de:</label>
+                    <div class="bar"></div>
+                </div>
+            </div>
+        </div>
+        <div class="form_block">
+            <div class="from_item" style="float:right">
+                <button>Finalizar</button>
+            </div>
+        </div>
+    </div>
+    </form>
+</div>
+{% endblock %}
+
+<!-- ----- -->
+{% block navbaractivate_3 %}
+
+activate-f
+
+{% endblock %}
+<!-- ----- -->
