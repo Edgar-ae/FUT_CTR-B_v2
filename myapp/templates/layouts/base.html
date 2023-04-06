@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static '/node_modules/bootstrap/dist/css/bootstrap.css' %}">
-    <link rel="stylesheet" href="{% static '/styles/main3.css' %}">
+    <link rel="stylesheet" href="{% static '/styles/main4.css' %}">
 
     {% block linkstyle %}
     {% endblock %}
@@ -87,9 +87,19 @@
               <li class="nav-item">
                 <a class="nav-link" href="#">About</a>
               </li>
-              <li class="nav-item dropdown">
+              
+            </ul>
+            
+          </div>
+          
+          <div class="btn-group">
+            <!-- <a href="#" class="btn btn-primary color1" >Inicia Sesión</a> -->
+
+            <ul class="content_myuser">
+              <li class="nav-item dropdown myuser">
+                <img src="{% static 'img/Sample_User_Icon.png' %}" alt="" height="23px">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Yo
+                  Mi Cuenta
                 </a>
                 <ul class="dropdown-menu">
                   <li><a class="dropdown-item" href="#">Mis Tramites</a></li>
@@ -97,12 +107,7 @@
                 </ul>
               </li>
             </ul>
-            
-          </div>
-          
-          <div class="btn-group">
-            <a href="#" class="btn btn-primary color1" >Sign in</a>
-            <a href="#" class="btn btn-primary color1">Sign up</a>
+
           </div>
 
         </div>

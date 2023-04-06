@@ -5,23 +5,23 @@
 <link rel="stylesheet" href="{% static '/styles/create_fut/identification2.css' %}">
 <link rel="stylesheet" href="{% static '/styles/create_fut/indem2.css' %}">
 {% endblock %}
-
 {% block contentf %}
 <div class="bodyf">
-    <form action=""></form>
+    <form method="post">
+        {% csrf_token %}
     <div class="content_form">
         <div class="form_block">
             <div class="from_item">
                 <div class="group">
-                    <input type="text" id="name" required>
-                    <label for="name">Nombre</label>
+                    <input type="text" id="name1" value="s"  required>
+                    <label for="name1">Nombre</label>
                     <div class="bar"></div>
                 </div>
             </div>
             <div class="from_item" style="float:right">
                 <div class="group">
-                    <input type="text" id="name" required>
-                    <label for="name">Programa</label>
+                    <input type="text" id="name2" value="s" required>
+                    <label for="name2">Programa</label>
                     <div class="bar"></div>
                 </div>
                 <!-- <textarea name="" id="" cols="30" rows="10"></textarea> -->
@@ -30,15 +30,15 @@
         <div class="form_block">
             <div class="from_item">
                 <div class="group">
-                    <input type="text" id="name" required>
-                    <label id="label_def" for="name">CON CÓDIGO DE CARNET O Nº D.N.I.</label>
+                    <input type="text" id="name3" value="s" required>
+                    <label id="label_def" for="name3">CON CÓDIGO DE CARNET O Nº D.N.I.</label>
                     <div class="bar"></div>
                 </div>
             </div>
             <div class="from_item" style="float:right">
                 <div class="group nomber_long">
-                    <input type="text" id="name" required>
-                    <label for="name">Celular</label>
+                    <input type="text" id="name4" value="s" required>
+                    <label for="name4">Celular</label>
                     <div class="bar"></div>
                 </div>
             </div>
@@ -46,8 +46,8 @@
         <div class="form_block">
             <div class="from_item">
                 <div class="group number">
-                    <input type="text" id="name" required>
-                    <label for="name">Ciclo</label>
+                    <input type="text" id="name5" name="cicle" required>
+                    <label for="name5">Ciclo</label>
                     <div class="bar"></div>
                 </div>
             </div>
@@ -55,6 +55,7 @@
         <div class="form_block">
             <div class="from_item" style="float:right">
                 <button>Next</button>
+                <a href="">Siguiente</a>
             </div>
         </div>
     </div>
