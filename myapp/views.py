@@ -18,22 +18,32 @@ def form_new_fut(request):
         return render(request, 'create_fut/identification.html')
     if request.method=='POST':
 
-
-        mycicle = request.POST.get('cicle')
+        name = request.POST.get('name')
+        program = request.POST.get('program')
+        dni = request.POST.get('dni')
+        phone = request.POST.get('phone')
+        cycle = request.POST.get('cycle')
 
         response = redirect('lol')
 
-        response.set_cookie('ciclon', mycicle)
+        response.set_cookie('c_name', name)
+        response.set_cookie('c_program', program)
+        response.set_cookie('c_dni', dni)
+        response.set_cookie('c_phone', phone)
+        response.set_cookie('c_cycle', cycle)
+
         return response
 
 
 def create_fut_details(request):
     if request.method=='GET':
         print('MMMMMMMMMMM')
-        name = request.COOKIES['ciclon'] #obtenemos el cookie
+        name = request.COOKIES['c_name'] #obtenemos el cookie
         print(name)
         print('MMMMMMMMMMM')
-        return render(request, 'create_fut/process.html')
+        return render(request, 'create_fut/process.html', {
+            'name': name
+        })
     if request.method=='POST':
         mycicle = request.POST.get('cicle')
         print('MMMMMMMMMMM')

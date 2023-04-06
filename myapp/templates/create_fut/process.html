@@ -38,7 +38,7 @@
             <div class="from_item">
 
                 <div class="group">
-                    <textarea name="" id="name" cols="30" rows="10" required>testwrite</textarea>
+                    <textarea name="" id="name" cols="30" rows="10" required> {{name}} </textarea>
                     <label id="label_def" for="name">Que por motivos de:</label>
                     <div class="bar"></div>
                 </div>
@@ -53,3 +53,22 @@
     </form>
 </div>
 {% endblock %}
+
+
+<!-- ----- -->
+{% block check_1 %}
+{% if name != '' %}
+<p style="width: 30px; text-align: center;">✅</p>
+{% else %}
+{% endif %}
+{% endblock %}
+<!-- ----- -->
+
+
+<!-- ----- -->
+{% block navbaractivate_2 %}
+
+activate-f
+
+{% endblock %}
+<!-- ----- -->

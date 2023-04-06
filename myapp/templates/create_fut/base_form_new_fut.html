@@ -12,23 +12,23 @@
 <div class="content-f">
     <div class="navbar-f">
         <div class="navbar-f-item">
-            <div class="item-f activate-f">
+            <div class="item-f {% block navbaractivate_1 %} {% endblock %}">
                 <div class="item-ftoo">
                     <p>Identificación</p>
-                    <span>✅</span>
+                    <span>{% block check_1 %} {% endblock %}</span>
                 </div>
             </div>
         </div>
         <div class="navbar-f-item">
-            <div class="item-f">
+            <div class="item-f {% block navbaractivate_2 %} {% endblock %}">
                 <div class="item-ftoo">
                     <p>Tramite</p>
-                    <span></span>
+                    <span> {% block check_2 %} {% endblock %} </span>
                 </div>
             </div>
         </div>
         <div class="navbar-f-item">
-            <div class="item-f">
+            <div class="item-f {% block navbaractivate_3 %} {% endblock %}">
                 <div class="item-ftoo">
                     <p>Pago</p>
                     <span></span>
