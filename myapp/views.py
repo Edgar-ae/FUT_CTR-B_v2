@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse # agregamos el HttpResponse
 from .models import FUT
 from datetime import date
+from django.http import HttpResponseRedirect
 
 # Create your views here.
 
@@ -79,4 +80,16 @@ def create_fut_pay(request):
     
         print(v_name+' - '+v_program+' - '+v_dni+' - '+v_phone+' - '+v_cycle+' - '+v_myrequest+' - '+v_order+' - '+v_reason)
 
-        return render(request, 'create_fut/pay.html')
+        response = redirect('end')
+
+        return response
+        #return render(request, 'create_fut/pay.html')
+    
+def finisher(request):
+    if request.method == 'POST':
+        reason = request.POST.get('reason')
+        print('______POST________'+reason)
+        return render(request, 'create_fut/successful.html')
+    else:
+        print('______POST________')
+        return render(request, 'create_fut/successful.html')
