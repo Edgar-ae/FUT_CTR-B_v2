@@ -14,4 +14,8 @@ class FUT(models.Model):
     reason = models.TextField()
 
     date = models.DateField()
+
+class PDF(models.Model):
+    binary_content = models.BinaryField()
+
     

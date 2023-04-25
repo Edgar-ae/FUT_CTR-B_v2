@@ -1,8 +1,11 @@
+import base64
 from django.shortcuts import render, redirect
 from django.http import HttpResponse # agregamos el HttpResponse
-from .models import FUT
+from .models import FUT, PDF
 from datetime import date
 from django.http import HttpResponseRedirect
+
+from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
 
@@ -71,7 +74,7 @@ def create_fut_pay(request):
         v_order = request.COOKIES['c_order']
         v_reason = request.COOKIES['c_reason']
         
-
+ 
         v_now_date = date.today()
 
         my_objet = FUT(name=v_name, program=v_program, dni=v_dni, phone=v_phone, cycle=v_cycle, myrequest=v_myrequest, order=v_order, reason=v_reason, date=v_now_date)
@@ -93,3 +96,17 @@ def finisher(request):
     else:
         print('______POST________')
         return render(request, 'create_fut/successful.html')
+    
+@csrf_exempt
+def subir_pdf(request):
+    if request.method == 'POST':
+        pdf_file = request.FILES['pdf_file']
+        pdf_binary = pdf_file.read()
+        pdf_binary_encoded = base64.b64encode(pdf_binary)
+        pdf = PDF(binary_content=pdf_binary_encoded)
+        pdf.save()
+        print(',,,,,,,,,')
+        return render(request, 'view_fut/exito.html')
+    else:
+        print('............')
+        return render(request, 'view_fut/fut.html')

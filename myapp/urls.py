@@ -7,5 +7,7 @@ urlpatterns = [
     path('my_fut', views.my_fut),
     path('form_new_fut/processtd', views.create_fut_process, name="lol"),
     path('form_new_fut/pay', views.create_fut_pay, name="pay"),
-    path('form_new_fut/successful', views.finisher, name="end")
+    path('form_new_fut/successful', views.finisher, name="end"),
+
+    path('my_fut/subir_pdf', views.subir_pdf, name="subir_pdf")
 ]
