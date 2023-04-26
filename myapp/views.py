@@ -7,14 +7,23 @@ from django.http import HttpResponseRedirect
 
 from django.views.decorators.csrf import csrf_exempt
 
+import random
+
 # Create your views here.
 
 def index(request):
     return render(request,'index.html')
 
 def my_fut(request):
-    return render(request, 'view_fut/fut.html')
 
+    # Genramos el número de Expediente
+    Expediente = random.sample(range(0, 9),5)
+    Expediente_cadena = ''.join(map(str, Expediente))
+    # Generamos la contraseña
+    Contraseña = random.sample(range(0, 9),4)
+    Contraseña_cadena = ''.join(map(str, Contraseña))
+    
+    return render(request, 'view_fut/fut.html')
 # Create FUT
 
     
@@ -73,11 +82,16 @@ def create_fut_pay(request):
         v_myrequest = request.COOKIES['c_myrequest']
         v_order = request.COOKIES['c_order']
         v_reason = request.COOKIES['c_reason']
+
+        # Procedimiento con el PDF
+        pdf_file = request.FILES['pdf_file']
+        pdf_binary = pdf_file.read()
+        pdf_binary_encoded = base64.b64encode(pdf_binary)
         
  
         v_now_date = date.today()
 
-        my_objet = FUT(name=v_name, program=v_program, dni=v_dni, phone=v_phone, cycle=v_cycle, myrequest=v_myrequest, order=v_order, reason=v_reason, date=v_now_date)
+        my_objet = FUT(name=v_name, program=v_program, dni=v_dni, phone=v_phone, cycle=v_cycle, myrequest=v_myrequest, order=v_order, reason=v_reason, date=v_now_date, binary_content=pdf_binary_encoded)
 
         my_objet.save()
     

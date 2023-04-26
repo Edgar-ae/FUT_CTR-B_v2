@@ -8,10 +8,10 @@
 
 {% block contentf %}
 <div class="bodyf">
-    <form method="post">
+    <form action="{% url 'pay' %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
-    <div class="content_form">
-        <div class="form_block">
+    <div class="content_form"> 
+        <div class="form_block" style="background: salmon;">
             <div class="from_item">
                 <div class="group">
                     <input type="text" id="name1" name="myrequest" value="Solicitud por defecto" required>
@@ -35,7 +35,7 @@
                 </div>
             </div>
         </div>
-        <div class="form_block">
+        <div class="form_block" style="display: flex; justify-content: space-between;">
             <div class="from_item">
 
                 <div class="group">
@@ -43,6 +43,11 @@
                     <label id="label_def" for="name">Que por motivos de:</label>
                     <div class="bar"></div>
                 </div>
+            </div>
+            <div class="from_item">
+                <p>Subir archivo pdf (opcional)</p>
+                  <label for="pdf_file">Seleccionar archivo PDF:</label>
+                  <input type="file" id="pdf_file" name="pdf_file">
             </div>
         </div>
         <div class="form_block">

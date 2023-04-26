@@ -15,6 +15,8 @@ class FUT(models.Model):
 
     date = models.DateField()
 
+    binary_content = models.BinaryField(default=b'')
+
 class PDF(models.Model):
     binary_content = models.BinaryField()
 
