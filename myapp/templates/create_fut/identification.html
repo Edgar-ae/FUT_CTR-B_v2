@@ -7,7 +7,7 @@
 {% endblock %}
 {% block contentf %}
 <div class="bodyf">
-    <form method="post">
+    <form action="{% url 'n_process' %}" method="post">
         {% csrf_token %}
     <div class="content_form">
         <div class="form_block">

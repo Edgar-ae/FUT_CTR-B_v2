@@ -8,7 +8,7 @@
 
 {% block contentf %}
 <div class="bodyf">
-    <form method="post" enctype="multipart/form-data">
+    <form action="{% url 'n_pay' %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
     <div class="content_form"> 
         <div class="form_block" style="background: salmon;">
@@ -52,7 +52,12 @@
         </div>
         <div class="form_block">
             <div class="from_item" style="float:right">
-                <h2> {{Name}} </h2>
+                <input type="hidden" name="name" value="{{ Name }}">
+                <input type="hidden" name="program" value="{{ Program }}">
+                <input type="hidden" name="dni" value="{{ Dni }}">
+                <input type="hidden" name="cycle" value="{{ Cycle }}">
+                <input type="hidden" name="phone" value="{{ Phone }}">
+
                 <button type="submit">Siguiente</button>
             </div>
         </div>
