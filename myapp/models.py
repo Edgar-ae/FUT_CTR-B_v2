@@ -2,22 +2,20 @@ from django.db import models
 
 # Create your models here.
 
-class FUT(models.Model):
+class fut(models.Model):
+    # Solicitante
     name = models.CharField(max_length=200)
     program = models.CharField(max_length=200)
     dni = models.CharField(max_length=10)
     phone = models.CharField(max_length=12)
     cycle = models.CharField(max_length=2)
 
+    # Registro
     myrequest = models.TextField()
     order = models.CharField(max_length=300)
     reason = models.TextField()
-
     date = models.DateField()
-
     binary_content = models.BinaryField(default=b'')
 
-class PDF(models.Model):
-    binary_content = models.BinaryField()
-
-    
+    proceeding = models.TextField() # Expediente
+    password = models.TextField()

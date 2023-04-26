@@ -8,7 +8,7 @@
 
 {% block contentf %}
 <div class="bodyf">
-    <form action="{% url 'pay' %}" method="post" enctype="multipart/form-data">
+    <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
     <div class="content_form"> 
         <div class="form_block" style="background: salmon;">
@@ -52,6 +52,7 @@
         </div>
         <div class="form_block">
             <div class="from_item" style="float:right">
+                <h2> {{Name}} </h2>
                 <button type="submit">Siguiente</button>
             </div>
         </div>

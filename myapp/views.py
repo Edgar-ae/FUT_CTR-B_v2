@@ -1,7 +1,7 @@
 import base64
 from django.shortcuts import render, redirect
 from django.http import HttpResponse # agregamos el HttpResponse
-from .models import FUT, PDF
+from .models import fut
 from datetime import date
 from django.http import HttpResponseRedirect
 
@@ -39,37 +39,43 @@ def form_new_fut(request):
         phone = request.POST.get('phone')
         cycle = request.POST.get('cycle')
 
-        response = redirect('lol')
+        response = redirect('lol', {
+            'Name': name,
+            'Program': program
+        })
 
-        response.set_cookie('c_name', name)
-        response.set_cookie('c_program', program)
-        response.set_cookie('c_dni', dni)
-        response.set_cookie('c_phone', phone)
-        response.set_cookie('c_cycle', cycle)
+        # response.set_cookie('c_name', name)
+        # response.set_cookie('c_program', program)
+        # response.set_cookie('c_dni', dni)
+        # response.set_cookie('c_phone', phone)
+        # response.set_cookie('c_cycle', cycle)
 
         return response
 
 
 def create_fut_process(request):
     if request.method=='GET':
-        print('MMMMMMMMMMM')
-        #name = request.COOKIES['c_name'] #obtenemos el cookie
-        #print(name)
-        print('MMMMMMMMMMM')
         return render(request, 'create_fut/process.html')
     if request.method=='POST':
         myrequest = request.POST.get('myrequest')
         order = request.POST.get('order')
         reason = request.POST.get('reason')
 
+        # Procedimiento con el PDF
+        pdf_file = request.FILES['pdf_file']
+        pdf_binary = pdf_file.read()
+        pdf_binary_encoded = base64.b64encode(pdf_binary)
+
         response = redirect('pay')
 
         response.set_cookie('c_myrequest', myrequest)
         response.set_cookie('c_order', order)
         response.set_cookie('c_reason', reason)
+        response.set_cookie('c_pdf', pdf_binary_encoded)
 
         return response
     
+@csrf_exempt  
 def create_fut_pay(request):
     if request.method=='GET':
         return render(request, 'create_fut/pay.html')
@@ -82,25 +88,22 @@ def create_fut_pay(request):
         v_myrequest = request.COOKIES['c_myrequest']
         v_order = request.COOKIES['c_order']
         v_reason = request.COOKIES['c_reason']
-
-        # Procedimiento con el PDF
-        pdf_file = request.FILES['pdf_file']
-        pdf_binary = pdf_file.read()
-        pdf_binary_encoded = base64.b64encode(pdf_binary)
-        
- 
         v_now_date = date.today()
+        v_pdf_binary = request.COOKIES['c_pdf']
+        
+        # Genramos el número de Expediente
+        Expediente = random.sample(range(0, 9),5)
+        Expediente_cadena = ''.join(map(str, Expediente))
+        # Generamos la contraseña
+        Contraseña = random.sample(range(0, 9),4)
+        Contraseña_cadena = ''.join(map(str, Contraseña))
 
-        my_objet = FUT(name=v_name, program=v_program, dni=v_dni, phone=v_phone, cycle=v_cycle, myrequest=v_myrequest, order=v_order, reason=v_reason, date=v_now_date, binary_content=pdf_binary_encoded)
+        my_objet = fut(name=v_name, program=v_program, dni=v_dni, phone=v_phone, cycle=v_cycle, myrequest=v_myrequest, order=v_order, reason=v_reason, date=v_now_date, binary_content=v_pdf_binary, proceeding=Expediente_cadena, password=Contraseña_cadena)
 
         my_objet.save()
-    
-        print(v_name+' - '+v_program+' - '+v_dni+' - '+v_phone+' - '+v_cycle+' - '+v_myrequest+' - '+v_order+' - '+v_reason)
-
         response = redirect('end')
 
         return response
-        #return render(request, 'create_fut/pay.html')
     
 def finisher(request):
     if request.method == 'POST':
@@ -108,8 +111,10 @@ def finisher(request):
         print('______POST________'+reason)
         return render(request, 'create_fut/successful.html')
     else:
-        print('______POST________')
-        return render(request, 'create_fut/successful.html')
+        objetos = fut.objects.filter(id=1).values('name').first()['name']
+        return render(request, 'create_fut/successful.html', {
+            'var': objetos
+        })
     
 @csrf_exempt
 def subir_pdf(request):
