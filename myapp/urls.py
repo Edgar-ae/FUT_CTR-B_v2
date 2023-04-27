@@ -10,5 +10,6 @@ urlpatterns = [
     path('form_new_fut/finisher', views.finisher, name="n_end"),
     path('form_new_fut/successful', views.successful, name="n_successful"),
 
-    path('my_fut/subir_pdf', views.subir_pdf, name="subir_pdf")
+    path('my_fut/subir_pdf', views.subir_pdf, name="subir_pdf"),
+    path('my_fut/proceedings', views.proceedings, name="n_proceedings")
 ]

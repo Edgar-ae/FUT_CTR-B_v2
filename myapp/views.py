@@ -1,3 +1,4 @@
+from asgiref.sync import sync_to_async, async_to_sync
 import base64
 from django.shortcuts import render, redirect
 from django.http import HttpResponse # agregamos el HttpResponse
@@ -7,17 +8,55 @@ from django.http import HttpResponseRedirect
 
 from django.views.decorators.csrf import csrf_exempt
 
-import random
+#pip install qrcode
+import random, qrcode
+
+#pip install opencv-python-headless
+import cv2
+import base64
+
+import string
+import asyncio
+
+from django.urls import reverse
 
 # Create your views here.
 
 def index(request):
     return render(request,'index.html')
 
+@csrf_exempt
 def my_fut(request):
 
     print('Hay que crear el QR!')
+    input = 'http://127.0.0.1:8000/my_fut'
+
+    qr = qrcode.QRCode(version=1, box_size=10, border=3)
+
+    qr.add_data(input)
+    qr.make(fit=True)
+
+    proceedings = 87567
+    str_num = str(proceedings)
+
+    img = qr.make_image(fill_color='black', back_color='white')
+    static_path = 'myapp/static/tmp/'+str_num+'qrcode.png'
+
+    print(static_path)
+    img.save(static_path)
+    img = cv2.imread('qrtelecapp.png')
     
+    # Codificar la imagen en formato PNG
+    retval, buffer = cv2.imencode('.png', img)
+
+    # Convertir el buffer a bytes
+    img_bytes = buffer.tobytes()
+
+    # Codificar los bytes en base64
+    img_base64 = base64.b64encode(img_bytes)
+
+    # print(img_base64)
+
     return render(request, 'view_fut/fut.html')
 # Create FUT
 
@@ -78,8 +117,65 @@ def create_fut_pay(request):
     else:
         return HttpResponse("<h1>404 Not Found :(</h1>")
 
-@csrf_exempt  
-def finisher(request):
+# para generear el expediente
+async def generate_proceedings():
+    # Genramos el número de Expediente
+    Expediente = random.sample(range(0, 9),5)
+    exp_ = ''.join(map(str, Expediente))
+    # Generamos la contraseña
+    Contraseña = random.sample(range(0, 9),4)
+    pas_ = ''.join(map(str, Contraseña))
+
+    return exp_, pas_
+
+
+async def generate_code():
+    caracteres = string.ascii_letters + string.digits
+    code = ''.join(random.choice(caracteres) for i in range(11))
+    return code
+
+@sync_to_async
+def save_my_objet(name, program, dni, phone, cycle, myrequest, order, reason, now_date, pdf_bytes, exp_, pas_, code_):
+    my_objet = fut(name=name, program=program, dni=dni, phone=phone, cycle=cycle, myrequest=myrequest, order=order, reason=reason, date=now_date, pdf_binary=pdf_bytes, proceeding=exp_, password=pas_, code=code_)
+    my_objet.save()
+    new_id = my_objet.id
+    return new_id
+
+def generate_qrcode(code_):
+    print('Hay que crear el QR!')
+
+    input = 'http://127.0.0.1:8000/view_fut'
+
+    qr = qrcode.QRCode(version=1, box_size=10, border=3)
+
+    qr.add_data(input)
+    qr.make(fit=True)
+
+    proceedings = 87567
+    str_num = str(proceedings)
+
+    img = qr.make_image(fill_color='black', back_color='white')
+    static_path = 'myapp/static/tmp/'+str_num+'qrcode.png'
+
+    print(static_path)
+    img.save(static_path)
+    img = cv2.imread('qrtelecapp.png')
+    
+    # Codificar la imagen en formato PNG
+    retval, buffer = cv2.imencode('.png', img)
+
+    # Convertir el buffer a bytes
+    img_bytes = buffer.tobytes()
+
+    # Codificar los bytes en base64
+    img_base64 = base64.b64encode(img_bytes)
+
+    # print(img_base64)
+
+    return img_base64
+
+
+async def finisher(request):
     if request.method == 'POST':
          # identification
         name = request.POST.get('name')
@@ -96,21 +192,16 @@ def finisher(request):
 
         now_date = date.today()
         
-        # Genramos el número de Expediente
-        Expediente = random.sample(range(0, 9),5)
-        Expediente_cadena = ''.join(map(str, Expediente))
-        # Generamos la contraseña
-        Contraseña = random.sample(range(0, 9),4)
-        Contraseña_cadena = ''.join(map(str, Contraseña))
+        exp_, pas_ = await generate_proceedings()
+        code_ = await generate_code()
 
-        my_objet = fut(name=name, program=program, dni=dni, phone=phone, cycle=cycle, myrequest=myrequest, order=order, reason=reason, date=now_date, binary_content=pdf_bytes, proceeding=Expediente_cadena, password=Contraseña_cadena)
-        my_objet.save()
 
-        new_id = my_objet.id
+        new_id = await save_my_objet(name, program, dni, phone, cycle, myrequest, order, reason, now_date, pdf_bytes, exp_, pas_, code_)
 
         response = redirect('n_successful')
         response.set_cookie('New_id', new_id)
         return response
+    
     else:
         return HttpResponse("<h1>404 Not Found :(</h1>")
     
@@ -124,7 +215,15 @@ def successful(request):
         'Order': objetos['order']
     })
 
+async def proceedings(request):
+    print('------Proceedings-------')
+    caracteres = string.ascii_letters + string.digits
+    code = ''.join(random.choice(caracteres) for i in range(11))
+    code_ = await generate_code()
+    exp_, pas_ = await generate_proceedings()
+    print(exp_, pas_)
 
+    return render(request, 'view_fut/proceedings.html')
 
 @csrf_exempt
 def subir_pdf(request):

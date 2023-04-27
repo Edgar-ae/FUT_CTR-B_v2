@@ -9,13 +9,14 @@ class fut(models.Model):
     dni = models.CharField(max_length=10)
     phone = models.CharField(max_length=12)
     cycle = models.CharField(max_length=2)
-
     # Registro
     myrequest = models.TextField()
     order = models.CharField(max_length=300)
     reason = models.TextField()
     date = models.DateField()
-    binary_content = models.BinaryField(default=b'')
-
+    pdf_binary = models.BinaryField(default=b'')
     proceeding = models.TextField() # Expediente
     password = models.TextField()
+    #imagen QR
+    qrimg_binary = models.BinaryField(default=b'')
+    code = models.TextField(default='00000000000')
