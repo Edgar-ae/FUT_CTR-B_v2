@@ -1,12 +1,279 @@
 {% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block linkstyle %}
+<style>
+.locaso {
+    color:blue;
+}
+.mycontent{
+    background: #F0F1F5;
+    width: 100%;
+    display: flex;
+}
+.apart_L{
+    width: 75%;
+    /* background: red; */
+    height: 100%;
+}
+.apart_R{
+    width: 25%;
+    background: rgb(194, 188, 188);
+    height: 800px;
+    display: flex;
+    position: relative;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+.infocontect{
+    /* background: pink; */
+    margin: 50px 0px;
+    width: 60%;
+    position:relative;
+    left:250px;
+    border-radius: 10px;
+}
+.doccontent{
+    /* position: absolute; */
+    width: 400px;
+    height: 600px;
+    background: skyblue;
+    /* position:absolute; z-index:1; */
+    position:relative; z-index:1;
+    left:-200px; top:50px; opacity:1;
+    border-radius: 10px;
+}
+.text_doc{
+    background: rgb(206, 206, 206);
+    position:absolute; z-index:1;
+    left:0px; top:45%; opacity:1;
+    width: 100%;
+    padding: auto;
+    text-align: center;
+}
+.text_doc button{
+    background: red;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    margin: 10px 0px;
+}
+.img_cocument{
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+}
+.student_content{
+    width: 100%;
+    background: white;
+    padding: 10px 20px;
+    border-radius: 15px;
+    margin: 10px 0px;
+}
+.content_route{
+    width: 100%;
+    height: 100px;
+    background: white;
+    padding: 10px 20px;
+    border-radius: 15px;
+    margin: 10px 0px;
+    display: grid;
+}
+.route_tittle{
+    width: 100%;
+    height: 20px;
+    /* background: red; */
+
+}
+.route_tittle h6{
+    font-weight: bold;
+}
+.route{
+    width: 100%;
+    height: 50px;
+    /* background: skyblue; */
+    margin: auto;
+    display: flex;
+}
+.circle{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%; /* La mitad del ancho y alto */
+}
+.ProgressBar{
+    width: 17%;
+    height: 3px;
+    /* background: rgb(255, 150, 89); */
+    margin: auto 0px;
+    display: flex;
+}
+.progre{
+    width: 10px;
+    height: 100%;
+    margin: 0px 5px;
+}
+.on{
+    background: rgb(37, 123, 252);
+}
+.off{
+    background: #acacac;
+}
+.tracking_content{
+    width: 100%;
+    background: white;
+    padding: 10px 20px;
+    border-radius: 15px;
+    margin: 10px 0px;
+}
+.route_content{
+    width: 100%;
+    /* background: gold; */
+}
+.tracking{
+    width: 700px;
+    height: 100px;
+    /* background: green; */
+    display: flex;
+    border-radius: 20px;
+    border: 2px solid gray;
+    margin: 20px 0px 0px 0px;
+    position: relative;
+}
+.tra_info{
+    width: 80%;
+    /* background: red; */
+    font-size: 10px;
+    padding: 10px 20px;
+}
+.tra_info p{
+    margin: 0px;
+}
+.tra_info hr{
+    margin: 5px;
+}
+.tra_seal{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20%;
+    /* background: purple; */
+    color: green;
+}
+.tra_seal h6{
+    font-weight: bold;
+    font-size: 15px;
+}
+.arrow{
+    width: 20px;
+    height: 20px;
+    /* background: aqua; */
+    margin: 0px 0px 20px 20px;
+    position: relative;
+}
+</style>
+<!-- ----------------------------------------------------------------------------- -->
+{% endblock %}
 
 {% block content %}
+<div class="mycontent">
+    <div class="apart_L">
+        <div class="infocontect">
+            <p>N° DE EXPEDIENTE: {{Proceeding}}</p>
+            <h1>{{Order}}</h1>
+            <div class="student_content">
+                <p>Alumno: {{Name}}</p>
+                <p>DNI: {{Dni}}****</p>
+                <p>Programa: {{Program}}</p>
+            </div>
+            <h5>Palabras del director</h5>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cum corrupti aperiam dolorem eos expedita pariatur temporibus a tempora architecto, minima soluta eaque nihil maxime corporis aspernatur tempore ex doloribus, totam velit eveniet fugiat, sapiente sequi placeat? Sint dignissimos autem maiores.</p>
+            <div class="content_route">
+                <div class="route_tittle"><h6>Ruta de Tramite</h6></div>
+                <div class="route">
+                    <div class="circle on">
+                    </div>
+                    <div class="ProgressBar">
+                        {% for i in Progressbar %}
+                        <div class="progre on"></div>
+                        {% endfor %}
+                    </div>
+                    <div class="circle on">
+                    </div>
+                    <div class="ProgressBar">
+                        {% for i in Progressbar %}
+                        <div class="progre off"></div>
+                        {% endfor %}
+                    </div>
+                    <div class="circle off">
+                    </div>
+                    <div class="ProgressBar">
+                        {% for i in Progressbar %}
+                        <div class="progre off"></div>
+                        {% endfor %}
+                    </div>
+                    <div class="circle off">
+                    </div>
+                    <div class="ProgressBar">
+                        {% for i in Progressbar %}
+                        <div class="progre off"></div>
+                        {% endfor %}
+                    </div>
+                    <div class="circle off"></div>
+                </div>
+            </div>
+            <div class="tracking_content">
+                <div class="route_tittle"><h6>Detalles de Seguimiento</h6></div>
+                <div class="route_content">
+                    {% for i in Details %}
+                        <div class="tracking" style="left: {{Left}}px; width: calc(700px - 40px);"> <!------->
+                            <div class="tra_info">
+                                <h6>MESA DE PARTES CENTRAL</h6>
+                                <p>INSTITUTO LATINOAMERICANO SIGLO XXI</p>
+                                <hr>
+                                <p>Recepción: 27/04/2023 08:31:59 a.m.</p>
+                                <p>Salida: 27/04/2023 09:31:59 a.m.</p>
+                            </div>
+                            <div class="tra_seal"><h6>PROCESADO</h6></div>
+                        </div>
+                        <div class="arrow" style="left: 20px;"><!------->
+                            <svg xmlns="http://www.w3.org/2000/svg" id="Capa_1" data-name="Capa 1" viewBox="0 0 83.44 83.44"><defs><style>.cls-1{fill:#ef0033;}</style></defs><title>Captura de pantalla 2023-04-28 155958</title><path class="cls-1" d="M4.77,24.1l3.9-3.91a3.86,3.86,0,0,1,5.48,0l24.55,25a3.86,3.86,0,0,0,5.48,0L69.29,20.17a3.84,3.84,0,0,1,5.45,0l3.93,3.93a3.85,3.85,0,0,1,0,5.48L44.43,63.29a3.86,3.86,0,0,1-5.42,0L4.79,29.58A3.85,3.85,0,0,1,4.77,24.1Z"/></svg>
+                        </div>
+                        
+                    {% endfor %}
 
-<h1>Expediente!</h1>
+                    <!----------------------------->
 
-<hr>
 
-<h4>Hola</h4>
-   
+                    <!-- <div class="tracking" style="left: 20px; width: calc(700px - 40px);">
+                        <div class="tra_info">
+                            <h6>MESA DE PARTES CENTRAL</h6>
+                            <p>INSTITUTO LATINOAMERICANO SIGLO XXI</p>
+                            <hr>
+                            <p>Recepción: 27/04/2023 08:31:59 a.m.</p>
+                            <p>Salida: 27/04/2023 09:31:59 a.m.</p>
+                        </div>
+                        <div class="tra_seal"><h6>PROCESADO</h6></div>
+                    </div>
+                    <div class="arrow" style="left: 40px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" id="Capa_1" data-name="Capa 1" viewBox="0 0 83.44 83.44"><defs><style>.cls-1{fill:#ef0033;}</style></defs><title>Captura de pantalla 2023-04-28 155958</title><path class="cls-1" d="M4.77,24.1l3.9-3.91a3.86,3.86,0,0,1,5.48,0l24.55,25a3.86,3.86,0,0,0,5.48,0L69.29,20.17a3.84,3.84,0,0,1,5.45,0l3.93,3.93a3.85,3.85,0,0,1,0,5.48L44.43,63.29a3.86,3.86,0,0,1-5.42,0L4.79,29.58A3.85,3.85,0,0,1,4.77,24.1Z"/></svg>
+                    </div> -->
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="apart_R">
+        <div class="doccontent">
+            <img class="img_cocument" src="{% static '/img/document.jpg' %}" alt="">
+            <div class="text_doc">
+                <h1>Documento</h1>
+                <button>Descagar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 {% endblock %}

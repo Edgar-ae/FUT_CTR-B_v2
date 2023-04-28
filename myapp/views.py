@@ -162,8 +162,6 @@ async def finisher(request):
         code_ = await generate_code()
         qrimg_bytes = await generate_qrcode(code_)
 
-        print(qrimg_bytes)
-
         new_id = await save_my_objet(name, program, dni, phone, cycle, myrequest, order, reason, now_date, pdf_bytes, exp_, pas_, code_, qrimg_bytes)
 
         response = redirect('n_successful')
@@ -187,8 +185,22 @@ def successful(request):
     })
 
 def proceedings(request):
-    print('------Proceedings!-------')
-   
-    return render(request, 'view_fut/proceedings.html')
+    code_ = request.GET.get('code')
+    object = fut.objects.filter(code=code_).values('name', 'dni', 'order', 'proceeding', 'password', 'code', 'program').first()
+    dni = str(object['dni'][:3])
+    # My params for css
+    progressbar = [1,2,3,4,5,6] # for progress bar lines
+    details = [1,2,3]# for details picture
+    left = 20 # css left details picture
+    return render(request, 'view_fut/proceedings.html', {
+        'Name': object['name'],
+        'Dni': dni,
+        'Order': object['order'],
+        'Proceeding': object['proceeding'],
+        'Program': object['program'],
+        'Progressbar': progressbar,
+        'Details': details,
+        'Left': left
+    })
 
 
